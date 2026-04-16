@@ -1,18 +1,17 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/ibraiiian/mrt-schudules/modules/station"
+)
 
 func main() {
 	InitiateRouter()
-
-	
 }
 
-fun InitiateRouter() {
-	var router = gin.Default()
-	 api = router.Group("/api/v1")
-
-}
+func InitiateRouter() {
+	router := gin.Default()
+	api := router.Group("/api/v1")
 
 	station.Initiate(api)
 

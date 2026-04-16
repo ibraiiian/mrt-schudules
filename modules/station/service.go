@@ -1,40 +1,31 @@
 package station
 
-type station interface {
-	GetStations() ([]StationResponse, error)
-}
+import (
+	"net/http"
+)
 
-type service struct {
+type Service struct {
 	client *http.Client
 }
 
-func NewService() service {
-	return &service{
+func NewService() *Service {
+	return &Service{
 		client: &http.Client{},
-		Timeout: 10* time.Second,
 	}
 }
- func (s *service) GetAllStations() ([]StationResponse, error) {
-	url := "https://www.jakarta.go.id/metro/api/v1/stations"
 
-	bytesResponse, err := client.DoRequest(s.client, url)
-	if err != nil {
-		return
-	}
+func (s *Service) GetAllStations() ([]StationResponse, error) {
+	var response []StationResponse
 
-	var stations []station
-	err = json.Umarshal(bytesResponse, &stations)
+	// Mock data for now
+	response = append(response, StationResponse{
+		ID:   "1",
+		Name: "Kota",
+	})
+	response = append(response, StationResponse{
+		ID:   "2",
+		Name: "Bundaran HI",
+	})
 
-	for _, item := range stations {
-		response = append(response, StationResponse{
-			ID: item.ID,
-			Name: item.Name,
-		})
-	}
-	)
-	// kita keluarin response nya
-
-
-	return
-
- }
+	return response, nil
+}
