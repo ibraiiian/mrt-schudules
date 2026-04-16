@@ -15,8 +15,12 @@ func NewService() service {
 	}
 }
  func (s *service) GetAllStations() ([]StationResponse, error) {
-	//layer service
+	url := "https://www.jakarta.go.id/metro/api/v1/stations"
+	// hit url
 
+	// kita keluarin response nya
+
+	
 	return
 
  }
