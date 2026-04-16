@@ -15,7 +15,9 @@ func Initiate(router *gin.RouterGroup) {
 	})
 
 	stationGroup.GET("/:id", func(c *gin.Context) {
-		CheckSccheduleBySationID(c, stationService)
+		CheckScheduleByStationID(c, stationService)
+	})
+}
 
 func GetAllStations(c *gin.Context, service *Service) {
 	data, err := service.GetAllStations()
@@ -35,10 +37,10 @@ func GetAllStations(c *gin.Context, service *Service) {
 	})
 }
 
-func CheckSccheduleBySationID(c *gin.Context, service *Service) {
+func CheckScheduleByStationID(c *gin.Context, service *Service) {
 	id := c.Param("id")
 
-	datas, err := service.CheckSccheduleBySationID(id)
+	datas, err := service.GetScheduleByStationID(id)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"success": false,
@@ -46,7 +48,6 @@ func CheckSccheduleBySationID(c *gin.Context, service *Service) {
 			"data":    nil,
 		})
 		return
-
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -54,3 +55,4 @@ func CheckSccheduleBySationID(c *gin.Context, service *Service) {
 		"message": "successfully get schedules by station",
 		"data":    datas,
 	})
+}
