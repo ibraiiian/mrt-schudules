@@ -13,11 +13,23 @@ func Initiate(router *gin.RouterGroup) {
  func  GetAllStations(c *gin.Context, service Service) {) {
 	data, err := service.GetAllStations()
 	if err != nil {
-		//handle error
+		c.JSON (code: https, StatusBadRequest,
+			response: response.ApiResponse{
+				success: false,
+				messege: err.Error(),
+				data: nil,
+			})
+		
 
 	}
 
-	//balikin response
+	c.JSON(
+		http.StatusOK,
+		response.ApiResponse{}
+		success: true,
+		messege: "successfully get all stations",
+		data: data,
+	)
 }
 
 	

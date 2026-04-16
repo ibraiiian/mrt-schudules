@@ -16,11 +16,25 @@ func NewService() service {
 }
  func (s *service) GetAllStations() ([]StationResponse, error) {
 	url := "https://www.jakarta.go.id/metro/api/v1/stations"
-	// hit url
 
+	bytesResponse, err := client.DoRequest(s.client, url)
+	if err != nil {
+		return
+	}
+
+	var stations []station
+	err = json.Umarshal(bytesResponse, &stations)
+
+	for _, item := range stations {
+		response = append(response, StationResponse{
+			ID: item.ID,
+			Name: item.Name,
+		})
+	}
+	)
 	// kita keluarin response nya
 
-	
+
 	return
 
  }
