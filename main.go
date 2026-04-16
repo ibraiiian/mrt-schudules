@@ -10,7 +10,11 @@ func main() {
 
 fun InitiateRouter() {
 	var router = gin.Default()
-	var api = router.Group("/api/v1")
+	 api = router.Group("/api/v1")
+
+}
+
+	station.Initiate(api)
 
 	router.Run(":8080")
 }
